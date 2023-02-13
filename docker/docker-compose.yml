@@ -1,8 +1,5 @@
 version: '3'
 
-networks:
-  app:
-
 services:
 
   todotests:
@@ -12,8 +9,6 @@ services:
       - todoback
     environment:
       - FRONT_HOST=todofront
-    networks:
-      - app
     restart: always
 
   todofront:
@@ -24,14 +19,10 @@ services:
       - 3000:3000
     environment:
       - REACT_APP_API_HOST=todoback
-    networks:
-      - app
     restart: always
 
   todoback:
     image: todobackend
     expose:
       - 3001:3001
-    networks:
-      - app
     restart: always
